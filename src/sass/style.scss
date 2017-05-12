@@ -1,5 +1,9 @@
 @import "./effects";
 
+.box-shadow {
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
 .settings {
   padding-left: 20px;
   padding-right: 20px;
@@ -12,15 +16,20 @@
 }
 
 .button-item {
+  @extend .box-shadow;
+
   width: 110px;
   margin: 20px;
   height: 110px;
   overflow: hidden;
   font-size: 25px;
   flex-wrap: wrap;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  transition: 0.3s all cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: 0.2s all cubic-bezier(0.68, -0.55, 0.265, 1.55);
   border-radius: 100%;
+
+  &.button {
+    background-color: #207EA9;
+  }
 
   &.is-off {
     color: #fff;
@@ -71,3 +80,5 @@
     font-size: 21px;
   }
 }
+
+@import "./scoreboard";

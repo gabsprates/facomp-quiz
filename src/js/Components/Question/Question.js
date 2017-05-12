@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import QuestionContent from './QuestionContent'
 import QuestionButtons from './QuestionButtons'
 
-export default function QuizQuestion(props) {
+export default function Question(props) {
   return (
     <div className="modal is-active">
       <form onSubmit={ (e) => {
