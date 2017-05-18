@@ -5,7 +5,7 @@ export default function ButtonItem(props) {
   return (
     <Link
       className={`button button-item ${ props.answered }`}
-      to={`/question/${ props.questionId }`}>
+      to={`/question/${ props.questionId }/${ props.num }`}>
       { props.num }
     </Link>
   );

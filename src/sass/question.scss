@@ -1,0 +1,87 @@
+.question {
+  padding-bottom: 78px;
+
+  .question-timer {
+    padding-top: 15px;
+    padding-bottom: 10px;
+
+    .progress {
+      margin-top: 15px;
+    }
+  }
+
+  .question-head {
+    padding: 20px;
+    transition: padding 0.3s ease-in-out;
+    border-bottom: 1px solid #dbdbdb;
+    background-color: #f5f5f5;
+  }
+
+  .question-description {
+    font-size: 20px;
+    white-space: pre-wrap;
+    margin-bottom: 10px;
+  }
+
+  &.t1 {
+    .team { border-color: $verde; }
+    .question-head {
+      padding-left: 140px;
+    }
+  }
+
+  &.t2 {
+    .team { border-color: $laranja; }
+    .question-head {
+      padding-right: 140px;
+    }
+  }
+
+  .team {
+    width: 100px;
+    margin: 15px;
+    border-width: 5px;
+    border-style: solid;
+    z-index: 100;
+    border-radius: 100%;
+
+    .score {
+      box-shadow: 0px 1px 4px -1px #666 inset;
+    }
+  }
+
+  .question-buttons {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+  }
+  .question-timer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+  }
+
+  @media (max-width: 651px) {
+    .team {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+      position: relative;
+      height: 90px;
+
+      &::before { top: 10px; }
+      .score { margin-top: 28px; }
+    }
+
+    &.t1 {
+      .question-head { padding-left: 20px; }
+    }
+
+    &.t2 {
+      .question-head { padding-right: 20px; }
+    }
+
+  }
+}

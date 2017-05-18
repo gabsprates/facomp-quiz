@@ -1,165 +1,90 @@
 import React, { Component } from 'react'
 import QuizNotifications from './QuizNotifications'
-// import Question from './Question/Question'
 import ButtonsList from './Buttons/ButtonsList'
+import ScoreBoard from './Score/ScoreBoard';
+import Requests from '../Services/Requests';
 import Settings from './Settings'
-import Requests from '../Services/Requests'
 
 export default class QuizBox extends Component {
-  render() {
-    return <p>box</p>;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      questionsButtons: [],
+      quizNotification: {
+        message: '',
+        show: false,
+        type: 'is-off'
+      }
+    };
+
+    this.getQuestionsButtons  = this.getQuestionsButtons.bind(this);
+    this.setQuestionsButtons  = this.setQuestionsButtons.bind(this);
+    this.setQuizNotification  = this.setQuizNotification.bind(this);
+    this.updateButtonState    = this.updateButtonState.bind(this);
   }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     questionsButtons: [],
-  //     quizNotification: {
-  //       message: '',
-  //       show: false,
-  //       type: 'is-off'
-  //     },
-  //     isQuestionActive: false,
-  //     questionModal: {}
-  //   };
-  //
-  //   this.getQuestionsButtons  = this.getQuestionsButtons.bind(this);
-  //   this.setQuestionsButtons  = this.setQuestionsButtons.bind(this);
-  //   this.setQuizNotification  = this.setQuizNotification.bind(this);
-  //   this.handleQuestionButton = this.handleQuestionButton.bind(this);
-  //   this.updateButtonState    = this.updateButtonState.bind(this);
-  //   this.changeModalStatus    = this.changeModalStatus.bind(this);
-  //   this.submitAnswer         = this.submitAnswer.bind(this);
-  //   this.setQuestion          = this.setQuestion.bind(this);
-  // }
-  //
-  // componentDidMount() {
-  //   this.getQuestionsButtons();
-  // }
-  //
-  // getQuestionsButtons() {
-  //   Requests.getQuestions(['answered'])
-  //     .then((res) => {
-  //       this.setQuestionsButtons(res.data);
-  //     })
-  //     .catch((res) => {
-  //       this.setQuizNotification(res.toString());
-  //     });
-  // }
-  //
-  // setQuestionsButtons(data) {
-  //   this.setState({ questionsButtons: data });
-  // }
-  //
-  // setQuizNotification(notification, type = 'danger', show = true) {
-  //   this.setState({
-  //     quizNotification: {
-  //       message: notification,
-  //       type: type,
-  //       show: show
-  //     }
-  //   });
-  // }
-  //
-  // handleQuestionButton(question) {
-  //   Requests.getQuestionById(question.id)
-  //     .then((res) => {
-  //       res.data["number"] = question.number;
-  //       res.data["isAnswering"] = false;
-  //       this.setQuestion(res.data);
-  //       this.changeModalStatus(true);
-  //     })
-  //     .catch((res) => {
-  //       this.setQuizNotification(res.toString());
-  //     });
-  // }
-  //
-  // setQuestion(question) {
-  //   this.setState({ questionModal: question });
-  // }
-  //
-  // updateButtonState(question, status = true) {
-  //   let buttons = this.state.questionsButtons.map(obj => {
-  //     if (obj._id == question) {
-  //       obj.answered = status;
-  //     }
-  //     return obj;
-  //   });
-  //
-  //   this.setState({ questionsButtons: buttons });
-  // }
-  //
-  // submitAnswer(e, question) {
-  //   e.preventDefault();
-  //   try {
-  //     let answer = e.target.answer.value || NaN;
-  //
-  //     if (isNaN(answer)) {
-  //       throw {
-  //         message: "You must to respond the questions...",
-  //         type: 'warning'
-  //       };
-  //     } else if (!question) {
-  //       throw new Error("Submission error.");
-  //     }
-  //
-  //     if (answer == question.answer) {
-  //       question.answered = true;
-  //       question.isAnswering = { correct: true };
-  //     } else {
-  //       question.answered = true;
-  //       question.isAnswering = { correct: false };
-  //     }
-  //
-  //     this.setQuestion(question);
-  //     this.updateButtonState(question._id);
-  //
-  //     Requests.setAnswered(question._id)
-  //       .catch((res) => {
-  //         this.setQuizNotification(`${res.toString()} :: Fail to update database`);
-  //       });
-  //
-  //     this.changeModalStatus(true);
-  //
-  //   } catch (e) {
-  //     this.changeModalStatus(false);
-  //     this.setQuizNotification(e.message, (e.type ? e.type : 'danger'));
-  //     return;
-  //   }
-  // }
-  //
-  // changeModalStatus(status = false) {
-  //   if (!!!status) {
-  //     this.setState({ questionModal: {} });
-  //   }
-  //   this.setState({ isQuestionActive: !!status });
-  // }
-  //
-  // render() {
-  //   return (
-  //     <div>
-  //       { this.state.quizNotification.show &&
-  //         <QuizNotifications
-  //           notification={ this.state.quizNotification.message }
-  //           close={ () => { this.setQuizNotification('', '', false); } }
-  //           type={ this.state.quizNotification.type }
-  //           />
-  //       }
-  //       <ButtonsList questions={ this.state.questionsButtons } handle={ this.handleQuestionButton } />
-  //
-  //       { this.state.isQuestionActive &&
-  //         <Question
-  //           question={ this.state.questionModal }
-  //           closeModal={ this.changeModalStatus }
-  //           submitAnswer={ this.submitAnswer }
-  //           />
-  //       }
-  //
-  //       <hr />
-  //
-  //       <Settings updateButton={ this.updateButtonState } />
-  //     </div>
-  //   )
-  // }
+  componentDidMount() {
+    this.getQuestionsButtons();
+  }
 
+  getQuestionsButtons() {
+    Requests.getQuestions(['answered'])
+      .then((res) => {
+        this.setQuestionsButtons(res.data);
+      })
+      .catch((res) => {
+        this.setQuizNotification(res.toString());
+      });
+  }
+
+  setQuestionsButtons(data) {
+    this.setState({ questionsButtons: data });
+  }
+
+  setQuizNotification(notification, type = 'danger', show = true) {
+    this.setState({
+      quizNotification: {
+        message: notification,
+        type: type,
+        show: show
+      }
+    });
+  }
+
+  updateButtonState(question, status = true) {
+    let buttons = this.state.questionsButtons.map(obj => {
+      if (obj._id == question) {
+        obj.answered = status;
+      }
+      return obj;
+    });
+
+    this.setState({ questionsButtons: buttons });
+  }
+
+  render() {
+    return (
+      <div>
+        <ScoreBoard
+          teamA={{ score: 3 }}
+          teamB={{ score: 5 }}
+          />
+
+        { this.state.quizNotification.show &&
+          <QuizNotifications
+            notification={ this.state.quizNotification.message }
+            close={ () => { this.setQuizNotification('', '', false); } }
+            type={ this.state.quizNotification.type }
+            />
+        }
+
+        <ButtonsList questions={ this.state.questionsButtons } handle={ this.handleQuestionButton } />
+
+        <hr />
+
+        <Settings updateButton={ this.updateButtonState } />
+      </div>
+    );
+  }
 }
