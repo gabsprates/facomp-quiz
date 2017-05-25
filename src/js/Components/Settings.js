@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Requests from '../Services/Requests'
 
 export default function Settings(props) {
   return (
@@ -9,7 +8,7 @@ export default function Settings(props) {
 
         <p className="control">
           <button type='button'
-            onClick={ () => { Requests.resetQuiz(props.updateButton); } }
+            onClick={ props.updateButton }
             className='button is-warning'>
             <span className="icon is-small">
               <i className='fa fa-refresh'></i>

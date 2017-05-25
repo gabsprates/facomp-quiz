@@ -18,10 +18,13 @@ export default class QuizBox extends Component {
       }
     };
 
+    this.sorter = null;
+
     this.getQuestionsButtons  = this.getQuestionsButtons.bind(this);
     this.setQuestionsButtons  = this.setQuestionsButtons.bind(this);
     this.setQuizNotification  = this.setQuizNotification.bind(this);
-    this.updateButtonState    = this.updateButtonState.bind(this);
+    this.resetQuiz            = this.resetQuiz.bind(this);
+    this.startSort            = this.startSort.bind(this);
   }
 
   componentDidMount() {
@@ -29,13 +32,8 @@ export default class QuizBox extends Component {
   }
 
   getQuestionsButtons() {
-    Requests.getQuestions(['answered'])
-      .then((res) => {
-        this.setQuestionsButtons(res.data);
-      })
-      .catch((res) => {
-        this.setQuizNotification(res.toString());
-      });
+    const perguntas = Requests.getButtons();
+    this.setQuestionsButtons(perguntas);
   }
 
   setQuestionsButtons(data) {
@@ -52,23 +50,45 @@ export default class QuizBox extends Component {
     });
   }
 
-  updateButtonState(question, status = true) {
-    let buttons = this.state.questionsButtons.map(obj => {
-      if (obj._id == question) {
-        obj.answered = status;
-      }
-      return obj;
-    });
+  resetQuiz() {
+    window.localStorage.clear();
+    Requests.initializeQuiz()
+      .then(this.getQuestionsButtons());
+  }
 
-    this.setState({ questionsButtons: buttons });
+  startSort(apertou) {
+    const botoes = document.querySelectorAll('.button-item.is-info');
+    let random;
+    clearInterval(this.sorter);
+
+    this.sorter = setInterval(() => {
+      random = Math.floor(Math.random(1) * botoes.length);
+      botoes[random].focus();
+
+      if (apertou) {
+        clearInterval(this.sorter);
+        this.props.limpaApertou();
+        botoes[random].click();
+      }
+
+    }, 300);
+
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.sorter);
+  }
+
+  componentDidUpdate(prevState, prevProps) {
+    this.startSort(this.props.apertou);
   }
 
   render() {
     return (
       <div>
         <ScoreBoard
-          teamA={{ score: 3 }}
-          teamB={{ score: 5 }}
+          teamA={ this.props.score.a }
+          teamB={ this.props.score.b }
           />
 
         { this.state.quizNotification.show &&
@@ -79,11 +99,11 @@ export default class QuizBox extends Component {
             />
         }
 
-        <ButtonsList questions={ this.state.questionsButtons } handle={ this.handleQuestionButton } />
+        <ButtonsList questions={ this.state.questionsButtons } />
 
         <hr />
 
-        <Settings updateButton={ this.updateButtonState } />
+        <Settings updateButton={ this.resetQuiz } />
       </div>
     );
   }

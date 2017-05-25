@@ -9,17 +9,4 @@ export default function ButtonItem(props) {
       { props.num }
     </Link>
   );
-
-  return (
-    <button
-      className={`button button-item ${ props.answered }`}
-      onClick={ () => props.handle({
-        number: props.num,
-        id: props.questionId
-      }) }
-      type="button"
-      >
-      { props.num }
-    </button>
-  )
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Requests from '../../Services/Requests';
 import Question from './Question';
+import config from '../../../../config/config';
 
 export default class QuestionContainer extends Component {
 
@@ -18,20 +19,19 @@ export default class QuestionContainer extends Component {
   }
 
   componentDidMount() {
-    Requests.getQuestionById(this.props.match.params.id)
-      .then((res) => {
-        res.data["number"] = this.props.match.params.number;
-        res.data["isAnswering"] = false;
-        this.setState({ question: res.data });
+    try {
+      const pergunta = Requests.getQuestionById(this.props.match.params.id);
 
-        if (!res.data.answered) {
-          this.startTimer();
-        }
-      })
-      .catch((res) => {
-        console.log(res.toString());
-        // this.setQuizNotification(res.toString());
-      });
+      pergunta["number"] = this.props.match.params.number;
+      pergunta["isAnswering"] = false;
+      this.setState({ question: pergunta });
+
+      if (!pergunta.answered) {
+        this.startTimer();
+      }
+    } catch (res) {
+      console.log(res.toString());
+    }
   }
 
   componentWillUnmount() {
@@ -40,7 +40,7 @@ export default class QuestionContainer extends Component {
 
   startTimer() {
     let count = 1;
-    let limit = 10;
+    let limit = config.timer;
     let timer = setInterval(() => {
       this.setState({ time: ((count++ * 100) / limit) });
       if (count > limit) {
@@ -80,11 +80,8 @@ export default class QuestionContainer extends Component {
       clearInterval(this.state.timer);
       this.setState({ question: question });
 
-      Requests.setAnswered(question._id)
-        .catch((res) => {
-          console.log(`${res.toString()} :: Fail to update database`);
-          // this.setQuizNotification(`${res.toString()} :: Fail to update database`);
-        });
+      Requests.setAnswered(question._id);
+      Requests.setQuestionById(question._id, question);
 
     } catch (err) {
       console.log(err.message, (err.type ? err.type : 'danger'));
