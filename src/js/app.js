@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../sass/style.scss';
+
+// Movido para configuração do webpack
+// import '../sass/style.scss';
+
 import AppContainer from './AppContainer';
 
 ReactDOM.render(

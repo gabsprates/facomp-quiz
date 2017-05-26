@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const { SERVER_HOST, SERVER_PORT } = process.env;
+const { createServer } = require('http');
+const path = require('path');
+const debug = require('debug')('facomp-quiz:www');
+const app = require('../server/app');
+const attachSocketIo = require('../server/io');
+
+// HTTP Server
+const port = SERVER_PORT || 3000;
+const host = SERVER_HOST || '127.0.0.1';
+
+const server = createServer(app);
+server.listen(port, host);
+server.on('listening', () => { debug(`Listening over ${host}:${port}`); });
+server.on('error', (err) => {
+  if (err.syscall !== 'listen') throw err;
+  if (!['EACCES', 'EADDRINUSE'].includes(err.code)) throw err;
+
+  if (err.code === 'EACCES') {
+    console.error(`${host}:${port} requires elevated privileges.`);
+  }
+
+  if (err.code === 'EADDRINUSE') {
+    console.error(`${host}:${port} is already in use.`);
+  }
+
+  process.exit(1); // EXIT_ERROR
+});
+
+// Socket.io
+const io = attachSocketIo(server);
