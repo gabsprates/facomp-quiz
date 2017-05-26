@@ -48,7 +48,6 @@ yarn run build
 3. Commit suas alterações: `git commit -m 'Add some feature'`
 4. Push para a sua branch: `git push origin my-new-feature`
 5. Envie um pull request :D
->>>>>>> 1f439ac215ca25e2bd43385599fa66e8929c31c6
 
 # 2) Inície o servidor já configurado para o ambiente de desenvolvimento
 yarn start
