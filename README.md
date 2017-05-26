@@ -1,66 +1,52 @@
-# English Quiz :us: :game_die:
+Facomp Quiz
+===========
 
-* `npm start`: run develop server in `localhost:8080`
-* `npm build`: build JS code to `dist/js`
+// TODO: @gabsprates introduzir projeto
 
-The initial idea was create a interactive game show, with questions and answers, using [React](https://facebook.github.io/react/). This starts with a home work, but now, I'm work to improve it.
 
-## How it works
+Instruções de uso
+-----------------
 
-The data provided by the API follow the basic format:
+Antes de começar, verifique que seu computador tenha os seguintes _softwares_
+instalados:
 
-```
-[
-  {
-    "_id": "question ID, the most important attribute",
-    "question": "Question description",
-    "options": [
-      "Option 1",
-      "Option 2"
-      // what options you need
-    ],
-    "answer": 3, // the integer represent the key of right answer of `options`
-    "answered": false // if this question already was answered
-  },
-  { ... }
-]
-```
+ * [Git]()
+ * [Node.js]()
+ * [Yarn]() (Opcional, mas recomendado)
 
-In the `config/config.js` file, you need to set the API URL:
+> Yarn é um gerenciador de pacotes do Node.js, que surge como alternativa ao
+> NPM, devido ao seu algorítimo diferenciado para identificar as dependências e
+> sua performance altamente superior. Caso não queira usá-lo, substitua os
+> comandos `yarn` por `npm`.
 
-```
-export default {
-  "webservice": {
-    // e.g:
-    "addr": "http://localhost:3000",
-  }
-}
+Para baixar o projeto, recomendamos que clone o repositório do GitHub:
+
+```bash
+# Usando Git
+git clone https://github.com/gabsprates/facomp-quiz
+
+# Usando Hub
+hub clone gabsprates/facomp-quiz
 ```
 
-This game works together *[english-quiz-server](https://github.com/gabsprates/english-quiz-server)*, but you can implement any other API to provide the data. For this, you must to implement the following endpoints:
+Então, instale as dependências com o comando `yarn` (ou `npm install`).
 
-* `GET`: `/questions/props/[ props ]`
+Para executá-lo em ambiente de desenvolvimento, basta executar `yarn run dev`.
+Isso irá iniciar um servidor HTTP na porta 3000 que irá fornecer a aplicação.
+Este servidor conta com a funcionalidade de _hot reloading_, o que significa que
+qualquer alteração nos componentes React serão automaticamente aplicadas no seu
+navegador, sem a necessidade de recarregar a página.
 
-  To get all questions with specifics props. E.g: `props/answered,answer`
+Para executá-lo em ambiente de produção, é necessário executar dois passos:
 
+```bash
+# 1) Gere as versões finais dos arquivos estáticos
+yarn run build
 
-* `GET`: `/questions/[ questionId ]`
+# 2) Inície o servidor já configurado para o ambiente de desenvolvimento
+yarn start
+```
 
-  The ID of the specific question you need. In this case, all props are returned.
-
-
-* `PUT`: `/questions/[ questionId ]`
-
-  To update the `question.answered` prop.
-
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
-## License
-
-MIT © [Gabriel Prates](http://gabrielprates.com)
+Você pode configurar a porta TCP utilizada pelo servidor com a variável de
+ambiente `SERVER_PORT`, e o endereço de IP que ele será associado com a variável
+de ambiente `SERVER_ADDR`.
