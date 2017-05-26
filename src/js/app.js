@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import App from './AppContainer';
 
 // Movido para configuração do webpack
 // import '../sass/style.scss';
 
-import AppContainer from './AppContainer';
+const renderApplication = (Component) => {
+  ReactDOM.render((
+    <AppContainer>
+      <Component />
+    </AppContainer>
+  ), document.querySelector('#quiz'));
+}
 
-ReactDOM.render(
-  <AppContainer />,
-  document.getElementById('quiz')
-)
+renderApplication(App);
+if (module.hot) {
+  module.hot.accept('./AppContainer', () => { renderApplication(App); });
+}
