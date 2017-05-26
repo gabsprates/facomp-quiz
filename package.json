@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "private": true,
   "name": "@gabsprates/facomp-quiz",
   "version": "1.0.0-beta.0",
@@ -10,6 +11,45 @@
     "dev": "cross-env NODE_ENV=development DEBUG=facomp-quiz:* node bin/www",
     "build": "cross-env NODE_ENV=production webpack --config=./webpack/config.js",
     "start": "cross-env NODE_ENV=production DEBUG=facomp-quiz:* node bin/www"
+=======
+  "name": "facomp-quiz",
+  "version": "1.0.0",
+  "description": "Small quiz to friendly games (a academic project)",
+  "main": "dist/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabsprates/facomp-quiz.git"
+  },
+  "keywords": [
+    "quiz",
+    "react",
+    "javascript",
+    "facomp"
+  ],
+  "author": "Gabriel Prates <gabsprates@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabsprates/facomp-quiz/issues"
+  },
+  "homepage": "https://github.com/gabsprates/facomp-quiz#readme",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "node-sass": "^4.3.0",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+>>>>>>> 1f439ac215ca25e2bd43385599fa66e8929c31c6
   },
   "dependencies": {
     "axios": "^0.15.3",
