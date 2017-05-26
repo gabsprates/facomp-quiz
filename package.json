@@ -1,6 +1,6 @@
 {
-  "name": "english-quiz",
-  "version": "2.0.0",
+  "name": "facomp-quiz",
+  "version": "1.0.0",
   "description": "Small quiz to friendly games (a academic project)",
   "main": "dist/js/app.js",
   "scripts": {
@@ -10,20 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabsprates/english-quiz.git"
+    "url": "git+https://github.com/gabsprates/facomp-quiz.git"
   },
   "keywords": [
     "quiz",
     "react",
     "javascript",
-    "english"
+    "facomp"
   ],
   "author": "Gabriel Prates <gabsprates@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gabsprates/english-quiz/issues"
+    "url": "https://github.com/gabsprates/facomp-quiz/issues"
   },
-  "homepage": "https://github.com/gabsprates/english-quiz#readme",
+  "homepage": "https://github.com/gabsprates/facomp-quiz#readme",
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",

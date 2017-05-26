@@ -1,65 +1,54 @@
-# English Quiz :us: :game_die:
+# Facomp Quiz :computer: :game_die:
 
-* `npm start`: run develop server in `localhost:8080`
-* `npm build`: build JS code to `dist/js`
+Projeto realizado para apresentação no evento Carreiras em Curso, do [Prominas MOC](http://www.prominasmoc.com.br/). O objetivo é mostrar um pouco do que é possível realizar com os conhecimentos de computação e informática, adquiridos ao longo dos cursos de tecnologia da instituição.
 
-The initial idea was create a interactive game show, with questions and answers, using [React](https://facebook.github.io/react/). This starts with a home work, but now, I'm work to improve it.
+Este projeto foi desenvolvido a partir do [English Quiz](https://github.com/gabsprates/english-quiz), utilizando a interface construída com [React](https://facebook.github.io/react/). Foi adaptado para se comunicar com Arduino, através de [Websockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) com [Socket.IO](https://socket.io/), e para ser independente de servidor backend, tendo as perguntas armazenadas em `src/js/Perguntas.js` e os estados em [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 
-## How it works
+## Como funciona
 
-The data provided by the API follow the basic format:
+A aplicação deve ser construída (_build_) já com as perguntas, arquivo `src/js/Perguntas.js`. Cada pergunta deve ser um objeto no array e devem ter o seguinte formato:
 
 ```
 [
   {
-    "_id": "question ID, the most important attribute",
-    "question": "Question description",
+    "_id": "o ID da questão, deve ser string, não pode ser nulo e dever ser único",
+    "question": "Texto da pergunta",
     "options": [
-      "Option 1",
-      "Option 2"
-      // what options you need
+      "Alternativa 1",
+      "Alternativa 2"
+      // ou quantas você precisar
     ],
-    "answer": 3, // the integer represent the key of right answer of `options`
-    "answered": false // if this question already was answered
+    "answer": 3, // inteiro que representa a chave de `options` que é a resposta
+    "answered": false // se a questão já foi respondida ou não
   },
   { ... }
 ]
 ```
 
-In the `config/config.js` file, you need to set the API URL:
+No arquivo `config/config.js`, você precisa configurar a URL do servidor Websocket e o tempo para resposta das perguntas:
 
 ```
+// e.g.
 export default {
-  "webservice": {
-    // e.g:
-    "addr": "http://localhost:3000",
-  }
+  "websocket": {
+    addr: "http://localhost:9990"
+  },
+  "timer": 15
 }
 ```
 
-This game works together *[english-quiz-server](https://github.com/gabsprates/english-quiz-server)*, but you can implement any other API to provide the data. For this, you must to implement the following endpoints:
+### Execução
+  * `npm start`: executa o servidor de desenvolvimento em `localhost:8080`
+  * `npm build`: constrói o código JS para produção em `dist/js/app.js`
 
-* `GET`: `/questions/props/[ props ]`
-
-  To get all questions with specifics props. E.g: `props/answered,answer`
-
-
-* `GET`: `/questions/[ questionId ]`
-
-  The ID of the specific question you need. In this case, all props are returned.
-
-
-* `PUT`: `/questions/[ questionId ]`
-
-  To update the `question.answered` prop.
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+1. Crie seu fork!
+2. Crie sua novas funcionalidades: `git checkout -b my-new-feature`
+3. Commit suas alterações: `git commit -m 'Add some feature'`
+4. Push para a sua branch: `git push origin my-new-feature`
+5. Envie um pull request :D
 
 ## License
 
