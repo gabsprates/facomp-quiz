@@ -71,7 +71,7 @@ export default class QuizBox extends Component {
         botoes[random].click();
       }
 
-    }, 300);
+    }, 200);
 
   }
 
@@ -103,7 +103,11 @@ export default class QuizBox extends Component {
 
         <hr />
 
-        <Settings updateButton={ this.resetQuiz } />
+        <Settings updateButton={ () => {
+            console.log(this.props);
+            this.resetQuiz();
+            this.props.limpaPlacar();
+          } } />
       </div>
     );
   }

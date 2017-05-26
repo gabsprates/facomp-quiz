@@ -36,6 +36,7 @@ export default class QuestionContainer extends Component {
 
   componentWillUnmount() {
     clearInterval(this.state.timer);
+    this.props.clearAll();
   }
 
   startTimer() {
@@ -71,11 +72,16 @@ export default class QuestionContainer extends Component {
 
       question.answered = true;
 
+      let termo = 0;
       if (answer == question.answer) {
         question.isAnswering = { correct: true };
+        termo = 2;
       } else {
         question.isAnswering = { correct: false };
+        termo = -1;
       }
+
+      this.props.controlScore(termo);
 
       clearInterval(this.state.timer);
       this.setState({ question: question });

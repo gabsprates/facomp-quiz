@@ -14,13 +14,13 @@ export default class AppContainer extends Component {
     super(props);
 
     this.state = {
-      teams: {
+      score: {
         a: 0,
         b: 0
       },
-      team: {},
+      team: false,
       apertou: false,
-      batimento: 1
+      batimento: 0
     }
 
     this.errorMessage = "";
@@ -29,9 +29,11 @@ export default class AppContainer extends Component {
     socket.on('connect', () => {
 
       socket.on('apertou', (e) => {
-        console.log('disparou aperta');
-        this.setActiveTeam(e);
-        this.setState({ apertou: true });
+        if (!this.state.team) {
+          console.log('disparou aperta');
+          this.setActiveTeam(e);
+          this.setState({ apertou: true });
+        }
       });
 
       socket.on('coracao', (e) => {
@@ -49,9 +51,11 @@ export default class AppContainer extends Component {
       location.href = '/#/erro';
     }
 
+    this.limpaEquipeBatimentos = this.limpaEquipeBatimentos.bind(this);
     this.setActiveTeam  = this.setActiveTeam.bind(this);
     this.setBatimento   = this.setBatimento.bind(this);
-    this.clearApertou   = this.clearApertou.bind(this);
+    this.limpaApertou   = this.limpaApertou.bind(this);
+    this.limpaPlacar    = this.limpaPlacar.bind(this);
   }
 
 
@@ -59,15 +63,47 @@ export default class AppContainer extends Component {
     const equipe = e.equipe;
     this.setState({
       team: {
-        score: this.state.teams[equipe],
-        team: ((equipe == 'a') ? 't1' : 't2')
+        score: this.state.score[equipe],
+        team: equipe
       }
     });
   }
 
 
-  clearApertou() {
+  limpaApertou() {
     this.setState({ apertou: false });
+  }
+
+
+  limpaEquipeBatimentos() {
+    this.setState({
+      team: false,
+      batimento: 0
+    });
+  }
+
+
+  addTeamScore(team = null, pts = 0) {
+    if (team) {
+      this.setState((prevState, props) => {
+        let score = prevState.score;
+        score[team] = prevState.score[team] + pts;
+
+        let equipe = prevState.team;
+        equipe.score = score[team];
+        return {
+          score: score,
+          team: equipe
+        };
+      });
+    }
+  }
+
+
+  limpaPlacar() {
+    this.setState({
+      score: { a: 0, b: 0 }
+    });
   }
 
 
@@ -103,9 +139,10 @@ export default class AppContainer extends Component {
           <section>
             <Route exact path='/' render={ ({ match }) => {
                 return <QuizBox
-                  score={ this.state.teams }
+                  score={ this.state.score }
                   apertou={ this.state.apertou }
-                  limpaApertou={ this.clearApertou } />
+                  limpaPlacar={ this.limpaPlacar }
+                  limpaApertou={ this.limpaApertou } />
               }
             } />
 
@@ -119,11 +156,20 @@ export default class AppContainer extends Component {
             } />
 
             <Route path='/question/:id/:number' render={ ({ match }) => {
-                return <QuestionContainer
-                  heartBeat={ this.state.batimento }
-                  match={ match }
-                  team={ this.state.team }
-                  />
+                if (this.state.team) {
+                  return <QuestionContainer
+                    controlScore={ (pts) => {
+                      this.addTeamScore(this.state.team.team, pts);
+                    } }
+                    heartBeat={ this.state.batimento }
+                    clearAll={ this.limpaEquipeBatimentos }
+                    match={ match }
+                    team={ this.state.team }
+                    />
+                }
+
+                location.href = '/#/';
+                return false;
               }
             } />
           </section>

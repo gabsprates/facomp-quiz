@@ -7,9 +7,12 @@ import Team from '../Score/Team';
 
 
 export default function Question(props) {
+  let teamStyle = (props.team.team == 'a') ? 't1' : 't2';
   return (
-    <div className={`question ${ props.team.team }`}>
-      <Team score={ props.team.score } team={ props.team.team } />
+    <div className={`question ${ teamStyle }`}>
+      <Team
+        score={ props.team.score }
+        team={ teamStyle } />
 
       <form onSubmit={ () => false }>
         <div className="is-fullwidth">
