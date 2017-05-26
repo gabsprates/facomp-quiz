@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function ButtonItem(props) {
   return (
-    <button
+    <Link
       className={`button button-item ${ props.answered }`}
-      onClick={ () => props.handle({
-        number: props.num,
-        id: props.questionId
-      }) }
-      type="button"
-      >
+      to={`/question/${ props.questionId }/${ props.num }`}>
       { props.num }
-    </button>
-  )
+    </Link>
+  );
 }

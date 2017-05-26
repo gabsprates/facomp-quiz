@@ -14,7 +14,7 @@ export default function QuestionButtons(props) {
   );
 
   return (
-    <footer className="modal-card-foot">
+    <footer className="question-buttons modal-card-foot">
       <div className="is-flex is-fullwidth action-buttons">
         { buttons }
       </div>

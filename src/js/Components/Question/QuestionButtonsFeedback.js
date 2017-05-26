@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function QuestionButtonsFeedback(props) {
   return (
     props.isCorrect ? (
-      <button type="button" className="button is-fullwidth is-success"
-        onClick={ () => props.closeModal(false) }>
+      <Link to="/" className="button is-fullwidth is-success">
         YEEEEEEEEEEES!!!!
         &nbsp;
         <span className='fa fa-thumbs-up'></span>
-      </button>
+      </Link>
     ) : (
-      <button type="button" className="button is-fullwidth is-danger"
-        onClick={ () => props.closeModal(false) }>
+      <Link to="/" className="button is-fullwidth is-danger">
         OOH NOOOOO!!!!
         &nbsp;
         <span className='fa fa-thumbs-down'></span>
-      </button>
+      </Link>
     )
   );
 }

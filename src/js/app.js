@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../sass/style.scss';
-import QuizBox from './Components/QuizBox';
+import AppContainer from './AppContainer';
 
 ReactDOM.render(
-  <QuizBox />,
+  <AppContainer />,
   document.getElementById('quiz')
 )

@@ -4,7 +4,10 @@ import Alternative from './Alternative'
 export default function QuestionContent(props) {
   const alternatives = props.question.options.map((text, index) => {
     return <Alternative
-      isChecked={ props.question.answered && (props.question.answer == index) }
+      isAnswered={ props.question.answered }
+      isChecked={ props.question.answer == index }
+      submit={ props.submit }
+      check={ props.question.checked }
       index={ index }
       text={ text }
       key={ index + text } />
@@ -12,10 +15,6 @@ export default function QuestionContent(props) {
 
   return (
     <section className="modal-card-body">
-      <div className="description">
-        { props.question.question }
-      </div>
-
       { alternatives }
     </section>
   );
