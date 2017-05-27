@@ -47,44 +47,5 @@ html, body {
   width: 100%;
 }
 
-// Alternatives
-.alternative .label {
-  font-size: 20px;
-  font-weight: normal;
-}
-.alternative:hover > .label {
-  color: rgb(247, 108, 19);
-}
-.alternative input {
-  display: none;
-}
-.alternative .fa {
-  color: #00b89c;
-  font-size: 28px;
-  margin-right: 15px;
-}
-.alternative .fa:not(.fa-dot-circle-o, .fa-circle)::before {
-  content: '\f10c'
-}
-.alternative input:checked + .fa::before {
-  content: '\f111'
-}
-
-
-// Question Modal
-.modal .description {
-  font-size: 20px;
-  white-space: pre-wrap;
-  margin-bottom: 10px;
-}
-
-
-// Action Buttons
-.action-buttons {
-  .fa {
-    font-size: 21px;
-  }
-}
-
 @import "./scoreboard";
 @import "./question"

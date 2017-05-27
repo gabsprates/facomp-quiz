@@ -18,20 +18,20 @@
   }
 
   .question-description {
-    font-size: 20px;
+    font-size: 2em;
     white-space: pre-wrap;
     margin-bottom: 10px;
   }
 
   &.t1 {
-    .team { border-color: $verde; }
+    .team { border-color: $corTimeA; }
     .question-head {
       padding-left: 140px;
     }
   }
 
   &.t2 {
-    .team { border-color: $laranja; }
+    .team { border-color: $corTimeB; }
     .question-head {
       padding-right: 140px;
     }
@@ -83,5 +83,42 @@
       .question-head { padding-right: 20px; }
     }
 
+  }
+}
+
+
+// Alternatives
+.alternative .label {
+  font-size: 1.9em;
+  font-weight: normal;
+}
+.alternative:hover > .label {
+  color: rgb(247, 108, 19);
+}
+.alternative input {
+  display: none;
+}
+.alternative .fa {
+  color: #00b89c;
+  font-size: 1em;
+  margin-right: 15px;
+  vertical-align: baseline;
+}
+.alternative .fa:not(.fa-dot-circle-o, .fa-circle)::before {
+  content: '\f10c'
+}
+.alternative input:checked + .fa::before {
+  content: '\f111'
+}
+
+
+// Action Buttons
+.action-buttons {
+  .button {
+    height: 55px;
+    font-size: 2em;
+  }
+  .fa {
+    font-size: 0.8em;
   }
 }

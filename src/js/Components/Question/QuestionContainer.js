@@ -46,6 +46,7 @@ export default class QuestionContainer extends Component {
       this.setState({ time: ((count++ * 100) / limit) });
       if (count > limit) {
         clearInterval(timer);
+        this.submitAnswer(this.state.question.options.length);
       }
     }, 1000);
     this.setState({ timer: timer });
@@ -91,7 +92,6 @@ export default class QuestionContainer extends Component {
 
     } catch (err) {
       console.log(err.message, (err.type ? err.type : 'danger'));
-      // this.setQuizNotification(e.message, (e.type ? e.type : 'danger'));
       return;
     }
   }
@@ -103,7 +103,7 @@ export default class QuestionContainer extends Component {
           team={ this.props.team }
           time={ this.state.time }
           question={ this.state.question }
-          heartBeat={ this.state.time == 10 ? 0 : this.props.heartBeat }
+          heartBeat={ this.props.heartBeat }
           submitAnswer={ this.submitAnswer }
           />
       ) : (

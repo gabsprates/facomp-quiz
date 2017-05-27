@@ -1,5 +1,5 @@
-$laranja: #ff4a2a;
-$verde: #fffc00;
+$corTimeA: #ffdd57;
+$corTimeB: #ff4a2a;
 
 .scoreboard {
   top: 0;
@@ -28,16 +28,21 @@ $verde: #fffc00;
 
   &.t1 {
     left: 0;
-    border-right: 6px solid $verde;
-    border-bottom: 6px solid $verde;
-    background-color: $verde;
+    color: #333;
+    border-right: 6px solid $corTimeA;
+    border-bottom: 6px solid $corTimeA;
+    background-color: $corTimeA;
     border-bottom-right-radius: 100px;
+
+    &::before {
+      text-shadow: none;
+    }
   }
   &.t2 {
     border-bottom-left-radius: 100px;
-    background-color: $laranja;
-    border-bottom: 6px solid $laranja;
-    border-left: 6px solid $laranja;
+    background-color: $corTimeB;
+    border-bottom: 6px solid $corTimeB;
+    border-left: 6px solid $corTimeB;
     right: 0;
   }
 

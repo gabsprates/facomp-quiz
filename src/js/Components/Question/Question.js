@@ -8,6 +8,7 @@ import Team from '../Score/Team';
 
 export default function Question(props) {
   let teamStyle = (props.team.team == 'a') ? 't1' : 't2';
+
   return (
     <div className={`question ${ teamStyle }`}>
       <Team
@@ -17,7 +18,7 @@ export default function Question(props) {
       <form onSubmit={ () => false }>
         <div className="is-fullwidth">
           <header className="question-head">
-            <h1 className="title is-3">
+            <h1 className="title is-2">
               Questão #{ props.question.number }
             </h1>
             <div className="question-description">
@@ -48,7 +49,7 @@ export default function Question(props) {
                     </progress>
                   </div>
                   <div className="column is-1">
-                    <Heart beat={ props.time >= 100 ? 0 : props.heartBeat } />
+                    <Heart beat={ props.heartBeat } />
                   </div>
                 </div>
               </div>
