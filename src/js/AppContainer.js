@@ -25,7 +25,7 @@ export default class AppContainer extends Component {
 
     this.errorMessage = "";
 
-    var socket = io.connect(`${config.websocket.addr}`);
+    var socket = io.connect(`${config.websocket}`);
     socket.on('connect', () => {
 
       socket.on('apertou', (e) => {
@@ -48,7 +48,7 @@ export default class AppContainer extends Component {
         Seu navegador não tem suporte para esta aplicação.<br /><br />
         Para mais detalhes: <strong>window.localStorage</strong>
       </span>);
-      location.href = '/#/erro';
+      location.href = '#/erro';
     }
 
     this.limpaEquipeBatimentos = this.limpaEquipeBatimentos.bind(this);
@@ -148,7 +148,7 @@ export default class AppContainer extends Component {
                     />
                 }
 
-                location.href = '/#/';
+                location.href = '#/';
                 return false;
               }
             } />

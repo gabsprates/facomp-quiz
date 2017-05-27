@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-module.exports = {
+const config = {
 
   entry: './src/js/app.js',
   output: {
@@ -23,17 +23,22 @@ module.exports = {
     ]
   },
 
-  plugins: [
+  devServer: {
+    inline: true
+  }
+
+};
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins = [
+    ...config.plugins,
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
     }),
     new webpack.optimize.UglifyJsPlugin()
-  ],
-
-  devServer: {
-    inline: true
-  }
-
+  ];
 };
+
+module.exports = config;
