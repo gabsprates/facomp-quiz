@@ -108,27 +108,7 @@ export default class AppContainer extends Component {
 
 
   setBatimento(beat) {
-    let duration;
-    if (beat >= 70 && beat < 80) {
-      duration = 1;
-    } else if (beat >= 80 && beat < 90) {
-      duration = 1 / 2;
-    } else if (beat >= 90 && beat < 100) {
-      duration = 1 / 3;
-    } else if (beat >= 100 && beat < 105) {
-      duration = 1 / 4;
-    } else if (beat >= 105 && beat < 110) {
-      duration = 1 / 5;
-    } else if (beat >= 110 && beat < 115) {
-      duration = 1 / 6;
-    } else if (beat >= 115 && beat < 120) {
-      duration = 1 / 7;
-    } else if (beat >= 120 && beat < 125) {
-      duration = 1 / 8;
-    } else if (beat >= 125 && beat < 130) {
-      duration = 1 / 9;
-    }
-    this.setState({ batimento: duration });
+    this.setState({ batimento: beat });
   }
 
 

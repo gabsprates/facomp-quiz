@@ -103,7 +103,7 @@ export default class QuestionContainer extends Component {
           team={ this.props.team }
           time={ this.state.time }
           question={ this.state.question }
-          heartBeat={ this.props.heartBeat }
+          heartBeat={ this.state.time == 10 ? 0 : this.props.heartBeat }
           submitAnswer={ this.submitAnswer }
           />
       ) : (

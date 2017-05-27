@@ -27,6 +27,14 @@ export const perguntas = [
   { "_id": "592583ede196121860c2f286", "question": "Fruta muito suculenta com a qual se produz um excelente licor, que além de reconstituinte físico é empregado no combate das doenças pulmonares.", "options": [ "Cupuaçu", "Morango", "Graviola", "Jenipapo" ], "answer": 3, "answered": false },
   { "_id": "592583ede196121860c2f287", "question": "Governante brasileiro que começou seu mandato quando tinha apenas 15 anos de idade e cuja gestão é considerada pelos historiadores, como um dos períodos mais produtivos e de maior desenvolvimento de toda nossa história.", "options": [ "Dom Pedro II", "Dom João VI", "Getúlio Vargas", "Marechal Deodoro da Fonseca" ], "answer": 0, "answered": false },
   { "_id": "592583ede196121860c2f288", "question": "Nome do principal rival do Pato Donald na conquista de Margarida.", "options": [ "Gansolino", "Ricardão", "Gastão", "Tio Patinhas" ], "answer": 2, "answered": false },
-  { "_id": "592583ede196121860c2f289", "question": "", "options": [  ], "answer": 0, "answered": false },
-  { "_id": "592583ede196121860c2f28a", "question": "", "options": [  ], "answer": 0, "answered": false }
+  { "_id": "592583ede196121860c2f289", "question": "A partir de qual data o PROMINAS chegou em Montes Claros?", "options": [ "Maio/2016", "Agosto/2016", "Fevereiro/2017" ], "answer": 0, "answered": false },
+  { "_id": "592583ede196121860c2f28a", "question": "O evento Carreiras em Curso já foi nome de um programa do PROMINAS veiculado em qual meio de comunicação:", "options": [ "Televisão", "Rádio", "Jornal Impresso" ], "answer": 1, "answered": false },
+  { "_id": "592583ede196121860c2f28b", "question": "Qual mapa integra a logomarca do Grupo Prominas", "options": [ "Mapa de Minas", "Mapa do Brasil", "Mapa do Sudeste" ], "answer": 1, "answered": false },
+  { "_id": "592583ede196121860c2f28c", "question": "Os cursos da área de computação do Grupo PROMINAS fazem parte de qual faculdade?", "options": [ "ISEIB", "FACIGE", "FACOMP" ], "answer": 2, "answered": false },
+  { "_id": "592583ede196121860c2f28d", "question": "A sede do PROMINAS está localizada em qual cidade?", "options": [ "Timóteo", "Belo Horizonte", "Ipatinga" ], "answer": 0, "answered": false },
+  { "_id": "592583ede196121860c2f28e", "question": "Qual o novo curso as FACULDADES PROMINAS começará a oferecer a partir do 2º semestre de 2017?", "options": [ "Odontologia", "Arquitetura", "Direito" ], "answer": 2, "answered": false },
+  { "_id": "592583ede196121860c2f28f", "question": "Qual promoção do PROMINAS premia com R$ 200,00 o aluno que indicar um novo aluno para a faculdade no 2º semestre?", "options": [ "Indique e ganhe", "Indicação Premiada", "Show de prêmios" ], "answer": 1, "answered": false },
+  { "_id": "592583ede196121860c2f290", "question": "O Instagram oficial das Faculdade Prominas em Montes Claros é:", "options": [ "@prominasmoc", "@institutoprominasmoc", "@prominasedumoc" ], "answer": 0, "answered": false },
+  { "_id": "592583ede196121860c2f291", "question": "Qual a duração do curso de Administração das Faculdades Prominas?", "options": [ "3 anos", "4 anos", "5 anos" ], "answer": 1, "answered": false },
+  { "_id": "592583ede196121860c2f292", "question": "Os primeiros cursos das Faculdades Prominas foram de qual área?", "options": [ "Saúde", "Exatas", "Educação" ], "answer": 2, "answered": false }
 ];
